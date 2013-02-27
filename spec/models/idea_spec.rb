@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe IdeaBox::Idea do
+
+  before do
+    DB["DELETE FROM ideas"].delete
+  end
   
   describe "Class Methods" do
     describe ".count" do
