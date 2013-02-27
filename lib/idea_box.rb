@@ -4,18 +4,25 @@ $LOAD_PATH.push(current_path) unless $LOAD_PATH.include?($LOAD_PATH)
 Bundler.require
 
 require 'sequel'
-DB = Sequel.sqlite 'db/ideabox.sqlite3'
+
+database = 'db/ideabox.sqlite3'
+
+if ENV["IDEA_BOX_ENV"] == "test"
+  database = 'db/ideabox-test.sqlite3'
+end
+
+DB = Sequel.sqlite database
 
 require 'models/idea'
 
 get '/' do
-  @ideas = Idea.all
+  @ideas = IdeaBox::Idea.all
   erb :index
 end
 
 post '/create' do
   # 1. Create an idea based on the form parameters
-  idea = Idea.new
+  idea = IdeaBox::Idea.new
   idea.title = params[:idea_name]
   idea.description = params[:idea_description]
 
@@ -27,7 +34,7 @@ post '/create' do
 end
 
 get '/ideas/:id' do
-  @idea = Idea.find(params[:id])
+  @idea = IdeaBox::Idea.find(params[:id])
   erb :show
 end
 

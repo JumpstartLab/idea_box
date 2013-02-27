@@ -1,5 +1,4 @@
 Bundler.require
-require './config'
 
 namespace :db do
   desc "Run migrations"
@@ -15,6 +14,11 @@ namespace :db do
 
   task :setup do
     Sequel.extension :migration
-    @database = Sequel.sqlite(IdeaBox::Config.database_uri)
+
+    if ENV["IDEA_BOX_ENV"] == "test"
+      database = 'db/ideabox-test.sqlite3'
+    end
+
+    @database = Sequel.sqlite database
   end
 end
