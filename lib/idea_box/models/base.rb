@@ -10,4 +10,4 @@ module IdeaBox
 
 end
 
-require 'models/idea'
+require 'idea_box/models/idea'
