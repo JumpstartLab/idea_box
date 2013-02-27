@@ -21,6 +21,7 @@ namespace :db do
       database_path = 'db/ideabox-test.sqlite3'
     end
 
+    puts "Using database: #{database_path}"
     @database = Sequel.sqlite database_path
   end
 end
