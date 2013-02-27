@@ -1,8 +1,4 @@
-current_path = File.expand_path('../',__FILE__)
-$LOAD_PATH.push(current_path) unless $LOAD_PATH.include?($LOAD_PATH)
-
-Bundler.require
-
+require 'sinatra'
 require 'sequel'
 
 database = 'db/ideabox.sqlite3'
@@ -14,6 +10,9 @@ end
 DB = Sequel.sqlite database
 
 require 'models/idea'
+
+
+set :views, 'lib/views'
 
 get '/' do
   @ideas = IdeaBox::Idea.all
