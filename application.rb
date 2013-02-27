@@ -3,8 +3,8 @@ $LOAD_PATH.push(current_path) unless $LOAD_PATH.include?($LOAD_PATH)
 
 Bundler.require
 
-require 'sinatra/sequel'
-set :database, 'sqlite://db/ideabox.sqlite3'
+require 'sequel'
+DB = Sequel.sqlite 'db/ideabox.sqlite3'
 
 require 'models/idea'
 
@@ -18,7 +18,7 @@ post '/create' do
   idea = Idea.new
   idea.title = params[:idea_name]
   idea.description = params[:idea_description]
-  
+
   # 2. Store it
   idea.save
 

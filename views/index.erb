@@ -17,9 +17,9 @@
     <ul>
       <% @ideas.each do |idea| %>
         <li>
-          <%= idea.title %><br/>
+          <a href="/ideas/<%= idea.id %>"><%= idea.title %></a><br/>
           <%= idea.description %>
-        </li>      
+        </li>
       <% end %>
     </ul>
   </body>
