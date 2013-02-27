@@ -1,9 +1,12 @@
+current_path = File.expand_path('../',__FILE__)
+$LOAD_PATH.push(current_path) unless $LOAD_PATH.include?($LOAD_PATH)
+
 Bundler.require
 
 require 'sinatra/sequel'
 set :database, 'sqlite://db/ideabox.sqlite3'
 
-require './models/idea'
+require 'models/idea'
 
 get '/' do
   @ideas = Idea.all
