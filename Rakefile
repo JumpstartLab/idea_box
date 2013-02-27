@@ -15,10 +15,12 @@ namespace :db do
   task :setup do
     Sequel.extension :migration
 
+    database_path = 'db/ideabox.sqlite3'
+
     if ENV["IDEA_BOX_ENV"] == "test"
-      database = 'db/ideabox-test.sqlite3'
+      database_path = 'db/ideabox-test.sqlite3'
     end
 
-    @database = Sequel.sqlite database
+    @database = Sequel.sqlite database_path
   end
 end
