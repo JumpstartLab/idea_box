@@ -17,7 +17,7 @@
     <ul>
       <% @ideas.each do |idea| %>
         <li>
-          <%= idea.title %><br/>
+          <%= idea.id %>: <%= idea.title %><br/>
           <%= idea.description %>
         </li>      
       <% end %>
